@@ -1,5 +1,11 @@
 import { FetchNotesResponse, NewNoteBody, Note } from '@/types/note';
 import { api } from './api';
+import { User } from '@/types/user';
+
+export type RegisterRequest = {
+  email: string;
+  password: string;
+};
 
 export const fetchNotes = async (
   search: string,
@@ -30,5 +36,10 @@ export const deleteNote = async (noteId: string) => {
 
 export const fetchNoteById = async (noteId: string): Promise<Note> => {
   const res = await api.get<Note>(`/notes/${noteId}`);
+  return res.data;
+};
+
+export const register = async (registerData: RegisterRequest) => {
+  const res = await api.post<User>(`/auth/register`, registerData);
   return res.data;
 };
