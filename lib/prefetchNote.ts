@@ -1,5 +1,5 @@
 import { QueryClient } from '@tanstack/react-query';
-import { fetchNoteById } from '@/lib/api';
+import { fetchNoteById } from './api/serverApi';
 
 // Функція, яка бере id, робить префетч та повертає готовий queryClient
 export async function getPrefetchedNoteClient(id: string) {

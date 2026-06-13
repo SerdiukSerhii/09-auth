@@ -16,3 +16,8 @@ export interface NewNoteBody {
 }
 
 export const NOTE_TAGS: NoteTag[] = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
+
+export interface FetchNotesResponse {
+  notes: Note[];
+  totalPages: number;
+}

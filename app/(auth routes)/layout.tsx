@@ -21,3 +21,36 @@ export default function PublicLayout({ children }: Props) {
 
   return <>{loading ? <div>Loading...</div> : children}</>;
 }
+
+// ('use client');
+
+// import React from 'react';
+
+// type Props = {
+//   children: React.ReactNode;
+// };
+
+// export default function PublicLayout({ children }: Props) {
+//   return <>{children}</>;
+// }
+
+//!=======================================================
+
+// ('use client');
+
+// import { useEffect } from 'react';
+// import { useRouter } from 'next/navigation';
+
+// export default function AuthLayout({ children }: { children: React.ReactNode }) {
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     const token = localStorage.getItem('token');
+
+//     if (token) {
+//       router.push('/notes');
+//     }
+//   }, [router]);
+
+//   return <>{children}</>;
+// }
