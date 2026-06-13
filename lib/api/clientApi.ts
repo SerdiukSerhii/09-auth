@@ -7,6 +7,11 @@ export type RegisterRequest = {
   password: string;
 };
 
+export type LoginRequest = {
+  email: string;
+  password: string;
+};
+
 export const fetchNotes = async (
   search: string,
   page: number,
@@ -41,5 +46,10 @@ export const fetchNoteById = async (noteId: string): Promise<Note> => {
 
 export const register = async (registerData: RegisterRequest) => {
   const res = await api.post<User>(`/auth/register`, registerData);
+  return res.data;
+};
+
+export const login = async (loginData: LoginRequest) => {
+  const res = await api.post<User>('/auth/login', loginData);
   return res.data;
 };
