@@ -1,6 +1,7 @@
 import { FetchNotesResponse, Note } from '@/types/note';
 import { api } from './api';
 import { cookies } from 'next/headers';
+import { User } from '@/types/user';
 
 export const fetchNotes = async (
   search: string,
@@ -33,4 +34,14 @@ export const checkSession = async () => {
   });
 
   return res;
+};
+
+export const getMe = async (): Promise<User> => {
+  const cookieStore = await cookies();
+  const { data } = await api.get('/users/me', {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  return data;
 };
