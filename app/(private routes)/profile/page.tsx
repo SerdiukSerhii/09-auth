@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Profile Page',
     description: 'Your personal profile page.',
-    url: 'https://08-zustand-fawn-alpha.vercel.app/notes/action/create',
+    url: 'https://09-auth-pearl-xi.vercel.app/09-auth/profile',
     images: [
       {
         url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
@@ -42,7 +42,7 @@ const Profile = async () => {
           </div>
           <div className={css.avatarWrapper}>
             <Image
-              src="https://ac.goit.global/fullstack/react/default-avatar.jpg"
+              src={user.avatar}
               alt="User Avatar"
               width={120}
               height={120}

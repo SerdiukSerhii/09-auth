@@ -64,7 +64,12 @@ export const checkSession = async () => {
 };
 
 export const getMe = async () => {
-  const res = await api.get<User>('/auth/me');
+  const res = await api.get<User>('/users/me');
+  return res.data;
+};
+
+export const updateMe = async (data: { username: string }) => {
+  const res = await api.patch<User>('/users/me', data);
   return res.data;
 };
 
