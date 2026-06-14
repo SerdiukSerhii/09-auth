@@ -12,6 +12,10 @@ export type LoginRequest = {
   password: string;
 };
 
+export type CheckSessionRequest = {
+  success: boolean;
+};
+
 export const fetchNotes = async (
   search: string,
   page: number,
@@ -54,10 +58,6 @@ export const login = async (loginData: LoginRequest) => {
   return res.data;
 };
 
-type CheckSessionRequest = {
-  success: boolean;
-};
-
 export const checkSession = async () => {
   const res = await api.get<CheckSessionRequest>('/auth/session');
   return res.data.success;
@@ -66,4 +66,8 @@ export const checkSession = async () => {
 export const getMe = async () => {
   const res = await api.get<User>('/auth/me');
   return res.data;
+};
+
+export const logout = async (): Promise<void> => {
+  await api.post('/auth/logout');
 };
