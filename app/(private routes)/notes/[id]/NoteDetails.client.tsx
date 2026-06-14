@@ -2,9 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import NoteRenderDetails from '@/components/NoteRenderDetails/NoteRenderDetails';
-
-import css from './NoteDetails.module.css';
 import NoteDataLoader from '@/components/NoteRenderDetails/NoteDataLoader';
+import css from './NoteDetails.module.css';
 
 const NoteDetailsClient = ({ id }: { id: string }) => {
   const router = useRouter();
