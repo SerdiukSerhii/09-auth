@@ -2,7 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import NoteRenderDetails from '@/components/NoteRenderDetails/NoteRenderDetails';
-import NoteDataLoader from '@/components/NoteRenderDetails/NoteDataLoader';
+import { fetchNoteById } from '@/lib/api/clientApi';
+import { useQuery } from '@tanstack/react-query';
 import css from './NoteDetails.module.css';
 
 const NoteDetailsClient = ({ id }: { id: string }) => {
@@ -10,20 +11,29 @@ const NoteDetailsClient = ({ id }: { id: string }) => {
 
   const goBack = () => router.back();
 
+  const {
+    data: note,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['note', id],
+    queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
+  });
+
+  if (isLoading) return <p>Loading, please wait..</p>;
+  if (error || !note) return <p>Something went wrong.</p>;
+
   return (
-    <NoteDataLoader id={id}>
-      {note => (
-        <section>
-          <button
-            onClick={goBack}
-            className={css.backButton}
-          >
-            Go Back
-          </button>
-          <NoteRenderDetails note={note} />
-        </section>
-      )}
-    </NoteDataLoader>
+    <section>
+      <button
+        onClick={goBack}
+        className={css.backButton}
+      >
+        Go Back
+      </button>
+      <NoteRenderDetails note={note} />
+    </section>
   );
 };
 
